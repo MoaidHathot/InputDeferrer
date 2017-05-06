@@ -23,6 +23,16 @@ namespace InputDeferrer
         private static readonly BindingMode[] DisallowedBindings = { BindingMode.OneWay, BindingMode.OneTime };
 
         #region Dependency/Attached Properties
+
+        public static readonly RoutedEvent ApplyChangesEvent = EventManager.RegisterRoutedEvent(
+            nameof(ApplyChanges), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(InputDeferrer));
+
+        public event RoutedEventHandler ApplyChanges
+        {
+            add { AddHandler(ApplyChangesEvent, value); }
+            remove { RemoveHandler(ApplyChangesEvent, value); }
+        }
+
         private static readonly DependencyProperty OriginalBindingProperty = DependencyProperty.RegisterAttached(
             "OriginalBinding", typeof(BindingBase), typeof(UIElement), new PropertyMetadata(default(BindingBase)));
 
@@ -324,6 +334,8 @@ namespace InputDeferrer
                 ?.FindVisualChildren<TextBox>()
                 .Where(IsBeingDeferred)
                 .ForEach(SubmitToSource);
+
+            RaiseEvent(new RoutedEventArgs(ApplyChangesEvent));
         }
 
         private class ButtonCommand : ICommand

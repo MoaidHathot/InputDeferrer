@@ -8,7 +8,7 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <local:InputDeferrer>
+            <local:InputDeferrer ApplyChanges="InputDeferrer_OnApplyChanges">
                 <local:InputDeferrer.ApplyButtonStyle>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Red" />

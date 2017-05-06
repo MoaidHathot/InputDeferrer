@@ -28,5 +28,10 @@ namespace InputDeferrer
 
             DataContext = ViewModel;
         }
+
+        private void InputDeferrer_OnApplyChanges(object sender, RoutedEventArgs e)
+        {
+            ;
+        }
     }
 }

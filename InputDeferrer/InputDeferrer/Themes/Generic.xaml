@@ -14,16 +14,17 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-
+                        
                         <StackPanel Orientation="Horizontal">
+
                             <ContentPresenter x:Name="PART_ContentPresenter" />
+
                             <Button x:Name="PART_ApplyButton" 
                                     Content="Apply" 
                                     VerticalAlignment="Center" 
                                     Visibility="{TemplateBinding ChangesAvailable, Converter={StaticResource VisibilityConverter}}"
                                     Style="{TemplateBinding ApplyButtonStyle}"/>
                         </StackPanel>
-
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
