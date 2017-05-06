@@ -336,46 +336,7 @@ namespace InputDeferrer
                 .ForEach(SubmitToSource);
 
             RaiseEvent(new RoutedEventArgs(ApplyChangesEvent));
-        }
-
-        private class ButtonCommand : ICommand
-        {
-            private bool _canExecuteValue;
-
-            public bool CanExecuteValue
-            {
-                get { return _canExecuteValue; }
-                set
-                {
-                    _canExecuteValue = value;
-                    RaiseCanExecutedChanged();
-                }
-            }
-
-            public InputDeferrer InputDeferrer { get; }
-
-            public event EventHandler CanExecuteChanged;
-
-            public ButtonCommand(InputDeferrer inputDeferrer)
-            {
-                InputDeferrer = inputDeferrer;
-            }
-
-            public bool CanExecute(object parameter)
-                => CanExecuteValue;
-
-            public void Execute(object parameter)
-            {
-                InputDeferrer.ApplyNewContent();
-
-                CanExecuteValue = false;
-            }
-
-            private void RaiseCanExecutedChanged()
-            {
-                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
+        }        
 
         private class IsFocusedConverter : IMultiValueConverter
         {
