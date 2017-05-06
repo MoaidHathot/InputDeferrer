@@ -9,6 +9,11 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <local:InputDeferrer>
+                <local:InputDeferrer.ApplyButtonStyle>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Red" />
+                    </Style>
+                </local:InputDeferrer.ApplyButtonStyle>
                 <StackPanel Orientation="Horizontal">
                 <Border BorderThickness="1" BorderBrush="Blue" Height="100">
                     <Grid>
