@@ -21,7 +21,6 @@
                             <Button x:Name="PART_ApplyButton"
                                     Content="{TemplateBinding ApplyButtonContent}"
                                     VerticalAlignment="Center"
-                                    Visibility="{TemplateBinding ChangesAvailable, Converter={StaticResource VisibilityConverter}}"
                                     Style="{TemplateBinding ApplyButtonStyle}"/>
                         </StackPanel>
                     </Border>

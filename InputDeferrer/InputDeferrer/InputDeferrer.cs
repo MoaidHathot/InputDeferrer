@@ -99,12 +99,12 @@ namespace InputDeferrer
         {
             //var textBox = (TextBox)d;
 
-            if (e.OldValue != e.NewValue && null != e.NewValue && null != e.OldValue)
-            {
+            //if (e.OldValue != e.NewValue)
+            //{
                 //var deferredControl = (InputDeferrer)textBox.GetValue(InputDeferrerProperty);
 
                 //deferredControl.ContentChanged();
-            }
+            //}
         }
 
         #region Members
@@ -151,7 +151,6 @@ namespace InputDeferrer
             => SubmitDeferredValue();
 
 
-
         private void SubmitDeferredValue(DeferredElement element)
         {
             var value = element.GetValue();
@@ -173,15 +172,17 @@ namespace InputDeferrer
 
         private void SetDeferringBinding(DeferredElement element)
         {
-            SetOriginalBinding(element.Element, CreateDeferredBinding(element));
+            SetOriginalBinding(element.Element, GetExistingBinding(element));
 
             var value = element.GetValue();
 
             BindingOperations.ClearBinding(element.Element, element.DeferredProperty);
 
-            element.SetValue(value);
-
             BindingOperations.SetBinding(element.Element, element.DeferredProperty, CreateDeferredBinding(element));
+
+            //TODO: Check if need both
+            element.Element.SetValue(DeferredValueProperty, value);
+            element.SetValue(value);
         }
 
         private void RestoreOriginalBinding(DeferredElement element)
@@ -315,3 +316,8 @@ namespace InputDeferrer
         #endregion Private Classes        
     }
 }
+
+//Todo:
+//1. Finish (Button Binding)
+//2. Maybe putting OriginalBinding and some other properties/Functionality in DeferredElement
+//3. Finishing the "ToDos"
